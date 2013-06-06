@@ -214,3 +214,9 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 /CreateAppTables/nbproject/private/
+/Entitiy/nbproject/private/
+/RemoteInterface/nbproject/private/
+/NetbankApplication/nbproject/private/
+/NetbankApplication/NetbankApplication-war/nbproject/private/
+/NetbankApplication/NetbankApplication-ejb/nbproject/private/
+/ATMClient/nbproject/private/
