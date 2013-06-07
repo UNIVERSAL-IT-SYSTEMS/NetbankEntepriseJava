@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,19 +43,35 @@ public class Account implements Serializable {
     private String email;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "BALANCE")
-    private BigDecimal balance;
+    private float balance;
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "PHONENO")
     private String phoneno;
-    @OneToMany(mappedBy = "accountto")
-    private Collection<Transactions> transactionsCollection;
-    @OneToMany(mappedBy = "accountfrom")
-    private Collection<Transactions> transactionsCollection1;
+    @OneToMany(mappedBy = "accountto", fetch = FetchType.EAGER)
+    private Collection<Transactions> creditTransactions;
+    @OneToMany(mappedBy = "accountfrom", fetch = FetchType.EAGER)
+    private Collection<Transactions> debitTransactions;
 
     public Account() {
     }
 
+    public Collection<Transactions> getCreditTransactions() {
+        return creditTransactions;
+    }
+
+    public void setCreditTransactions(Collection<Transactions> creditTransactions) {
+        this.creditTransactions = creditTransactions;
+    }
+
+     public Collection<Transactions> getDebitTransactions() {
+        return debitTransactions;
+    }
+
+    public void setDebitTransactions(Collection<Transactions> debitTransactions) {
+        this.debitTransactions = debitTransactions;
+    }
+    
     public Account(String accountno) {
         this.accountno = accountno;
     }
@@ -83,11 +100,11 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public BigDecimal getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
@@ -107,23 +124,7 @@ public class Account implements Serializable {
         this.phoneno = phoneno;
     }
 
-    @XmlTransient
-    public Collection<Transactions> getTransactionsCollection() {
-        return transactionsCollection;
-    }
-
-    public void setTransactionsCollection(Collection<Transactions> transactionsCollection) {
-        this.transactionsCollection = transactionsCollection;
-    }
-
-    @XmlTransient
-    public Collection<Transactions> getTransactionsCollection1() {
-        return transactionsCollection1;
-    }
-
-    public void setTransactionsCollection1(Collection<Transactions> transactionsCollection1) {
-        this.transactionsCollection1 = transactionsCollection1;
-    }
+    
 
     @Override
     public int hashCode() {

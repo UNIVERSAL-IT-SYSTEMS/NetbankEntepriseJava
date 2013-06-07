@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,18 +41,26 @@ public class Transactions implements Serializable {
     private Integer transactionid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "AMOUNT")
-    private BigDecimal amount;
+    private float amount;
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
     @JoinColumn(name = "ACCOUNTTO", referencedColumnName = "ACCOUNTNO")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Account accountto;
     @JoinColumn(name = "ACCOUNTFROM", referencedColumnName = "ACCOUNTNO")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Account accountfrom;
 
-    public Transactions() {
+    public Transactions(){
+        
+    }
+    public Transactions(float amount, Account accountFrom, Account accountTo,
+            Date date) {
+        this.amount = amount;
+        this.accountfrom = accountFrom;
+        this.accountto = accountTo;
+        this.date = date;
     }
 
     public Transactions(Integer transactionid) {
@@ -66,11 +75,11 @@ public class Transactions implements Serializable {
         this.transactionid = transactionid;
     }
 
-    public BigDecimal getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

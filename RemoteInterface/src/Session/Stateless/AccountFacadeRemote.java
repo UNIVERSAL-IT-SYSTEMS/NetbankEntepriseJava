@@ -25,5 +25,5 @@ public interface AccountFacadeRemote {
     List<Account> findRange(int[] range);
 
     int count();
-
+    
 }
