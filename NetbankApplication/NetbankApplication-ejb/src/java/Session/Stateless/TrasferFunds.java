@@ -23,9 +23,12 @@ public class TrasferFunds implements TrasferFundsRemote, TrasferFundsLocal {
         Account accountFrom =new Account();
         accountTo = accountFacade.find(accountToNo);
         accountFrom = accountFacade.find(accountFromNo);
-        if(accountTo == null || accountFrom == null){
-            return "Either accounts doesn't exist";
-        }else{
+        if(accountTo == null){
+            return "Account no you wish to trasfer doesn't exist!";
+        }else if(accountTo.equals(accountFromNo)){
+            return "You cannot trasfer money to your account!";
+        }
+        else{
             if(amount <= accountFrom.getBalance()){
                 accountFrom.setBalance(accountFrom.getBalance() - amount);
                 accountTo.setBalance(accountTo.getBalance() + amount);
@@ -40,7 +43,7 @@ public class TrasferFunds implements TrasferFundsRemote, TrasferFundsLocal {
                 return "Insufficient funds for transfer";
             }
         }
-        return "transfer successfull!";
+        return "transfer successfull. New balance: "+ accountFrom.getBalance();
     }
 
 }

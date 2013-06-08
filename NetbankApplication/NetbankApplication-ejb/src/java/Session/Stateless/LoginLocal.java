@@ -4,8 +4,6 @@
  */
 package Session.Stateless;
 
-import entities.Transactions;
-import java.util.Collection;
 import javax.ejb.Local;
 
 /**
@@ -13,6 +11,7 @@ import javax.ejb.Local;
  * @author chandan
  */
 @Local
-public interface AccountStatementLocal {
-    Iterable<Transactions> viewTransactions(String accountNo);
+public interface LoginLocal {
+    
+    boolean doLogin(String accountNo, String password);
 }

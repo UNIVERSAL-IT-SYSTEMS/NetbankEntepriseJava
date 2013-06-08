@@ -4,8 +4,6 @@
  */
 package Session.Stateless;
 
-import entities.Transactions;
-import java.util.Collection;
 import javax.ejb.Remote;
 
 /**
@@ -13,6 +11,6 @@ import javax.ejb.Remote;
  * @author chandan
  */
 @Remote
-public interface AccountStatementRemote {
-    Iterable<Transactions> viewTransactions(String accountNo);
+public interface ResetPasswordRemote {
+    String reset(String accountNo, String secans);
 }

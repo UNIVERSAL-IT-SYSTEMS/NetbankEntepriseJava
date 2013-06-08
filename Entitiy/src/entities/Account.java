@@ -14,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * HIT8119
@@ -48,6 +47,10 @@ public class Account implements Serializable {
     private String password;
     @Column(name = "PHONENO")
     private String phoneno;
+    @Column(name = "SECQUES")
+    private String secques;
+    @Column(name = "SECANS")
+    private String secans;
     @OneToMany(mappedBy = "accountto", fetch = FetchType.EAGER)
     private Collection<Transactions> creditTransactions;
     @OneToMany(mappedBy = "accountfrom", fetch = FetchType.EAGER)
@@ -124,7 +127,21 @@ public class Account implements Serializable {
         this.phoneno = phoneno;
     }
 
-    
+    public String getSecques() {
+        return secques;
+    }
+
+    public void setSecques(String secques) {
+        this.secques = secques;
+    }
+
+    public String getSecans() {
+        return secans;
+    }
+
+    public void setSecans(String secans) {
+        this.secans = secans;
+    }
 
     @Override
     public int hashCode() {

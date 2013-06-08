@@ -19,7 +19,7 @@ public class ViewBalance implements ViewBalanceRemote, ViewBalanceLocal {
 
     public String viewBalance(String accountNo){
         Account account = new Account();
-        account = accountFacade.find(account);
+        account = accountFacade.find(accountNo);
         if(account != null){
             return "Account balance of account number: "+ accountNo+" is: "+
                     String.valueOf(account.getBalance());

@@ -4,8 +4,6 @@
  */
 package Session.Stateless;
 
-import entities.Transactions;
-import java.util.Collection;
 import javax.ejb.Remote;
 
 /**
@@ -13,6 +11,7 @@ import javax.ejb.Remote;
  * @author chandan
  */
 @Remote
-public interface AccountStatementRemote {
-    Iterable<Transactions> viewTransactions(String accountNo);
+public interface LoginRemote {
+    
+    boolean doLogin(String accountNo, String password);
 }

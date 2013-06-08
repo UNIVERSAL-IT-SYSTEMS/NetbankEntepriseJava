@@ -8,6 +8,7 @@ import entities.Account;
 import entities.Transactions;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,15 +25,21 @@ public class AccountStatement implements AccountStatementRemote, AccountStatemen
     private Collection<Transactions> creditCollection;
     private Collection<Transactions> transactionCollection;
 
-    public Collection<Transactions> viewTransactions(String accountNo){
+    @Override
+    public Iterable<Transactions> viewTransactions(String accountNo){
         Account account = accountFacade.find(accountNo);
-        debitCollection = account.getDebitTransactions();
-        transactionCollection = debitCollection;
-        creditCollection = account.getCreditTransactions();
-        for (Transactions transaction : creditCollection){
-            transactionCollection.add(transaction);
+        if(account != null){
+            debitCollection = account.getDebitTransactions();
+            creditCollection = account.getCreditTransactions();        
+            Collection<Transactions> result = new ArrayList<Transactions>();
+            if(debitCollection != null){
+                result.addAll(debitCollection);
+            }
+            if(creditCollection!= null){
+                result.addAll(creditCollection);
+            }
+            return result;
         }
-     
-        return transactionCollection;
+        return null;
     } 
 }
