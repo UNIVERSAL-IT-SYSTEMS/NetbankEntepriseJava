@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Netbank login</title>
+    </h:head>
+    <h:body>
+        <h2>Login to Netbank</h2>
+        <h:form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Account number"/>
+                        </td>
+                        <td>
+                            <h:inputText title="accountNo" id="accountNo"
+                                         required="true" 
+                                         requiredMessage="Account No must not be blank"
+                                         maxlength="6" 
+                                         value="#{netbankManagedBean.accountNo}">
+                                <f:validateLength maximum="6"/>
+                            </h:inputText>
+                        </td>
+                        <td>
+                            <h:message for="accountNo" style="color:red"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Password"/>
+                        </td>
+                        <td>
+                            <h:inputSecret title="password" id="password"
+                                         required="true" 
+                                         requiredMessage="Password must not be blank"
+                                         maxlength="8" 
+                                         value="#{netbankManagedBean.password}">
+                            </h:inputSecret>
+                        </td>
+                        <td>
+                            <h:message for="password" style="color:red"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h:commandButton id="submit" value="Login" 
+                             action="#{netbankManagedBean.checkLogin()}"/>
+        </h:form>
+    </h:body>
+</html>
+

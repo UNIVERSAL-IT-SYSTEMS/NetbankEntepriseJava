@@ -22,6 +22,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

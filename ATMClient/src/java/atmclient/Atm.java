@@ -6,14 +6,13 @@ import Session.Stateless.TrasferFundsRemote;
 import Session.Stateless.ViewBalanceRemote;
 import entities.Transactions;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -22,7 +21,6 @@ import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 
 /**
  * HIT8119
@@ -82,13 +80,18 @@ public class Atm {
                             break;
                         }
                     case 3:
-                        Iterable<Transactions> transactions = null;
+                        List<Transactions> transactions = null;
                         transactions = accountStatement.viewTransactions(acctNo);
-                        System.out.println("Account Statement :");
+                        System.out.println("Account From      "+
+                                "Account To       "+ "Amount       "+
+                                "Date");
                         if (transactions != null) {
                             for (Transactions transaction : transactions) {
-                                System.out.println(transaction.getAmount() + ""
-                                        + "    " + transaction.getDate().toString());
+                                System.out.println(transaction.getAccountfrom()
+                                        .getAccountno()+"           "
+                                        +transaction.getAccountto().getAccountno()+
+                                        "            "+transaction.getAmount()+ 
+                                        "         "+ transaction.getDate());
                             }
                         }
                         break;

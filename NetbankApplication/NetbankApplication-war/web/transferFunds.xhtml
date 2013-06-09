@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Fund transfer </title>
+    </h:head>
+    <h:body>
+        <br></br>
+        <h:form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="To Account"/>
+                        </td>
+                        <td>
+                            <h:inputText title="toAccount" id="toAccount"
+                                         required="true" 
+                                         requiredMessage="To account must not be blank"
+                                         maxlength="6" 
+                                         value="#{netbankManagedBean.toAccount}">
+                                <f:validateLength maximum="6"/>
+                            </h:inputText>
+                        </td>
+                        <td>
+                            <h:message for="toAccount" style="color:red"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Amount"/>
+                        </td>
+                        <td>
+                            <h:inputText title="amount" id="amount"
+                                         required="true" 
+                                         requiredMessage="Amount must not be blank"
+                                         maxlength="8" 
+                                         value="#{netbankManagedBean.amount}">
+                            </h:inputText>
+                        </td>
+                        <td>
+                            <h:message for="amount" style="color:red"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h:commandButton id="submit" value="Transfer" 
+                             action="#{netbankManagedBean.transferMoney()}"/>        
+        </h:form>
+        <br></br>
+        <h:outputLink value="menu.xhtml">
+                    Main menu
+        </h:outputLink>
+    </h:body>
+</html>
+

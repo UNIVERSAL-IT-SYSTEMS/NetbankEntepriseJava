@@ -43,8 +43,7 @@ public class Transactions implements Serializable {
     @Column(name = "AMOUNT")
     private float amount;
     @Column(name = "DATE")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private String date;
     @JoinColumn(name = "ACCOUNTTO", referencedColumnName = "ACCOUNTNO")
     @ManyToOne(fetch = FetchType.EAGER)
     private Account accountto;
@@ -56,7 +55,7 @@ public class Transactions implements Serializable {
         
     }
     public Transactions(float amount, Account accountFrom, Account accountTo,
-            Date date) {
+            String date) {
         this.amount = amount;
         this.accountfrom = accountFrom;
         this.accountto = accountTo;
@@ -83,11 +82,11 @@ public class Transactions implements Serializable {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

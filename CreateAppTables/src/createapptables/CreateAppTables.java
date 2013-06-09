@@ -15,8 +15,8 @@ import java.sql.Statement;
 public class CreateAppTables {
 
     public static void main(String[] args) {
-        dropTables();
-        createAccountTable();
+        //dropTables();
+        //createAccountTable();
         createTransactionTable();
     }
     
@@ -88,7 +88,7 @@ public class CreateAppTables {
                     + " (transactionid int not null primary key "
                     + "GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1)"
                     + ", accountTo CHAR(6),"
-                    + " accountFrom CHAR(6), amount decimal(10,2), date date,"
+                    + " accountFrom CHAR(6), amount decimal(10,2), date CHAR(30),"
                     + "foreign key (accountTo) references account(accountNo),"
                     + "foreign key (accountFrom) references account(accountNo))");
             System.out.println("Transactions table created successfully");

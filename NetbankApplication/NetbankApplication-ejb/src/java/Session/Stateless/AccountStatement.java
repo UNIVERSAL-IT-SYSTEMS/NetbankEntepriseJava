@@ -23,21 +23,26 @@ public class AccountStatement implements AccountStatementRemote, AccountStatemen
     private AccountFacadeLocal accountFacade;
     private Collection<Transactions> debitCollection;
     private Collection<Transactions> creditCollection;
-    private Collection<Transactions> transactionCollection;
 
     @Override
-    public Iterable<Transactions> viewTransactions(String accountNo){
+    public List<Transactions> viewTransactions(String accountNo){
         Account account = accountFacade.find(accountNo);
         if(account != null){
             debitCollection = account.getDebitTransactions();
-            creditCollection = account.getCreditTransactions();        
-            Collection<Transactions> result = new ArrayList<Transactions>();
+            System.out.println("##### Debit count");
+            System.out.println(debitCollection.size());
+            creditCollection = account.getCreditTransactions();  
+            System.out.println("##### Credit count");
+            System.out.println(creditCollection.size());
+            List<Transactions> result = new ArrayList<Transactions>();
             if(debitCollection != null){
                 result.addAll(debitCollection);
             }
             if(creditCollection!= null){
                 result.addAll(creditCollection);
             }
+            System.out.println("##### Total count");
+            System.out.println(result.size());
             return result;
         }
         return null;
