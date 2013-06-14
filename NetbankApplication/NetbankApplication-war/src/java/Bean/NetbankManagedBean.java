@@ -1,22 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Bean;
 
+import Session.Stateless.AccountFacadeRemote;
 import Session.Stateless.AccountStatementRemote;
 import Session.Stateless.LoginRemote;
+import Session.Stateless.ResetPasswordRemote;
 import Session.Stateless.TrasferFundsRemote;
 import Session.Stateless.ViewBalanceRemote;
+import entities.Account;
 import entities.Transactions;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,6 +24,10 @@ import javax.inject.Named;
 @Named(value = "netbankManagedBean")
 @SessionScoped
 public class NetbankManagedBean implements Serializable {
+    @EJB
+    private AccountFacadeRemote accountFacade;
+    @EJB
+    private ResetPasswordRemote resetPassword;
     @EJB
     private AccountStatementRemote accountStatement;
     @EJB
@@ -137,11 +140,16 @@ public class NetbankManagedBean implements Serializable {
     private String secAns;
     
     public void showBalance(){
+        System.out.println("IN Balance");
         balance = viewBalance.viewBalance(accountNo);
     }
     
     public String checkLogin(){
         if(login.doLogin(accountNo, password)){
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.
+                    getExternalContext().getSession(true);
+            session.setAttribute("account", accountNo);
             return "success";
         }else{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
@@ -153,8 +161,9 @@ public class NetbankManagedBean implements Serializable {
     }
     
     public void transferMoney(){
-        String result = trasferFunds.transferFunds(accountNo, toAccount, amount);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        String result = trasferFunds.transferFunds(accountNo, toAccount,
+                amount);
+        FacesContext.getCurrentInstance().addMessage("error", new FacesMessage
                     (result));
         setToAccount(null);
         setAmount(0);
@@ -162,10 +171,18 @@ public class NetbankManagedBean implements Serializable {
     
     public void showTransactions(){
         transactions = accountStatement.viewTransactions(accountNo);
-        System.out.println(transactions.size());
-        for (Transactions transaction: transactions ){
-            System.out.println(transaction.getAmount());
-        }
+    }
+    
+    public void requestChange(){
+        String result = resetPassword.reset(accountNo, secAns);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+                    (result));
+        setSecAns(null);
+    }
+    
+    public void showQues(){
+        Account account = accountFacade.find(accountNo);
+        setSecQues(account.getSecques());
     }
 }
 

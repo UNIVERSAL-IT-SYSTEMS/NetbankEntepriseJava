@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
@@ -7,7 +8,8 @@
         <title>Fund transfer </title>
     </h:head>
     <h:body>
-        <br></br>
+        <h2>Transfer funds</h2>
+        <h:messages id="error" ></h:messages>
         <h:form>
             <table>
                 <tbody>
@@ -17,10 +19,10 @@
                         </td>
                         <td>
                             <h:inputText title="toAccount" id="toAccount"
-                                         required="true" 
-                                         requiredMessage="To account must not be blank"
-                                         maxlength="6" 
-                                         value="#{netbankManagedBean.toAccount}">
+                                required="true" 
+                                requiredMessage="To account must not be blank"
+                                maxlength="6" 
+                                value="#{netbankManagedBean.toAccount}">
                                 <f:validateLength maximum="6"/>
                             </h:inputText>
                         </td>
@@ -34,10 +36,10 @@
                         </td>
                         <td>
                             <h:inputText title="amount" id="amount"
-                                         required="true" 
-                                         requiredMessage="Amount must not be blank"
-                                         maxlength="8" 
-                                         value="#{netbankManagedBean.amount}">
+                                    required="true" 
+                                    requiredMessage="Amount must not be blank"
+                                    maxlength="8" 
+                                    value="#{netbankManagedBean.amount}">
                             </h:inputText>
                         </td>
                         <td>

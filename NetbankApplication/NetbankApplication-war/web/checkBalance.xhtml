@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Balance</title>
     </h:head>
-    <f:event type="preRenderView" listener="#{netbankManagedBean.showBalance}" />
+    <f:event type="preRenderView" 
+             listener="#{netbankManagedBean.showBalance()}" />
     <h:body>
-        <br></br>
-        <br></br>
+        <h2>Account balance</h2>
         <p>#{netbankManagedBean.balance}</p>
         <h:outputLink value="menu.xhtml">
                     Main menu
