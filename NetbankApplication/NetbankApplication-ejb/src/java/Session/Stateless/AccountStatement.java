@@ -8,7 +8,6 @@ import entities.Account;
 import entities.Transactions;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,7 +17,7 @@ import javax.ejb.Stateless;
  * @author chandan
  */
 @Stateless
-public class AccountStatement implements AccountStatementRemote, AccountStatementLocal {
+public class AccountStatement implements AccountStatementLocal {
     @EJB
     private AccountFacadeLocal accountFacade;
     private Collection<Transactions> debitCollection;

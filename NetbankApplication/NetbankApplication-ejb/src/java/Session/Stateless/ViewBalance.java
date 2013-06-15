@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
  * @author chandan
  */
 @Stateless
-public class ViewBalance implements ViewBalanceRemote, ViewBalanceLocal {
+public class ViewBalance implements ViewBalanceLocal {
     @EJB
     private AccountFacadeLocal accountFacade;
 

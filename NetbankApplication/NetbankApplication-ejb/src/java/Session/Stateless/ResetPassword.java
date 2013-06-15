@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
  * @author chandan
  */
 @Stateless
-public class ResetPassword implements ResetPasswordRemote, ResetPasswordLocal {
+public class ResetPassword implements ResetPasswordLocal {
     @EJB
     private AccountFacadeLocal accountFacade;
     

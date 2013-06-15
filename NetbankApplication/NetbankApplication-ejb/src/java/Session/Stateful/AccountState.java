@@ -16,7 +16,7 @@ import javax.ejb.Stateful;
  * @author chandan
  */
 @Stateful
-public class AccountState implements AccountStateRemote, AccountStateLocal {
+public class AccountState implements AccountStateRemote {
     @EJB
     private AccountStatementLocal accountStatement;
     @EJB

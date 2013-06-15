@@ -12,7 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class TrasferFunds implements TrasferFundsRemote, TrasferFundsLocal {
+public class TrasferFunds implements TrasferFundsLocal {
     @EJB
     private TransactionsFacadeLocal transactionsFacade;
     @EJB

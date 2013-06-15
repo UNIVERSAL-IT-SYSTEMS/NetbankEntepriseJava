@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
  * @author chandan
  */
 @Stateless
-public class Login implements LoginRemote, LoginLocal {
+public class Login implements LoginLocal {
     @EJB
     private AccountFacadeLocal accountFacade;
 
