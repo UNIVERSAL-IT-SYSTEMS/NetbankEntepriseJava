@@ -1,4 +1,3 @@
-
 package Session.Stateless;
 
 import entities.Transactions;
@@ -7,6 +6,7 @@ import javax.ejb.Local;
 
 /**
  * HIT8119
+ *
  * @author chandan 1785265
  */
 @Local
@@ -25,5 +25,4 @@ public interface TransactionsFacadeLocal {
     List<Transactions> findRange(int[] range);
 
     int count();
-
 }

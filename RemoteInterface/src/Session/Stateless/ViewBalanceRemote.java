@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import javax.ejb.Remote;
@@ -12,7 +8,6 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface ViewBalanceRemote {
-    
+
     String viewBalance(String accountNo);
-    
 }

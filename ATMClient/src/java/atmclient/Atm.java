@@ -67,13 +67,15 @@ public class Atm {
                         System.out.println(viewBalance.viewBalance(acctNo));
                         break;
                     case 2:
-                        System.out.println("Enter the account number you wish to transfer: ");
+                        System.out.println("Enter the account number you wish"
+                                + " to transfer: ");
                         String acctTo = input.nextLine();
                         System.out.println("Enter amount: ");
                         String amount = input.nextLine();
                         try {
                             Float floatamount = Float.parseFloat(amount);
-                            System.out.println(trasferFunds.transferFunds(acctNo, acctTo, floatamount));
+                            System.out.println(trasferFunds.transferFunds(
+                                    acctNo, acctTo, floatamount));
                             break;
                         } catch (NumberFormatException ex) {
                             System.out.println("Invalid input for amount!");
@@ -81,7 +83,8 @@ public class Atm {
                         }
                     case 3:
                         List<Transactions> transactions = null;
-                        transactions = accountStatement.viewTransactions(acctNo);
+                        transactions = accountStatement.viewTransactions
+                                (acctNo);
                         System.out.println("Account From      "+
                                 "Account To       "+ "Amount       "+
                                 "Date");
@@ -89,7 +92,8 @@ public class Atm {
                             for (Transactions transaction : transactions) {
                                 System.out.println(transaction.getAccountfrom()
                                         .getAccountno()+"           "
-                                        +transaction.getAccountto().getAccountno()+
+                                        +transaction.getAccountto().
+                                        getAccountno()+
                                         "            "+transaction.getAmount()+ 
                                         "         "+ transaction.getDate());
                             }
@@ -105,7 +109,8 @@ public class Atm {
                     default:
                         System.out.println("Invalid input!");
                 }
-                System.out.println("Enter y to continue else any key to exist.");
+                System.out.println("Enter y to continue else "
+                        + "any key to exist.");
                 answer = input.nextLine();
             } while (answer.equalsIgnoreCase("y"));
         } else {
@@ -167,7 +172,4 @@ public class Atm {
         }
         return mapM;
     }
-
-    
-    
 }

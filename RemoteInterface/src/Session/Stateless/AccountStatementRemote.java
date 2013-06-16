@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import entities.Transactions;
@@ -14,5 +10,6 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface AccountStatementRemote {
+
     List<Transactions> viewTransactions(String accountNo);
 }

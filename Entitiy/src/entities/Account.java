@@ -1,8 +1,6 @@
-
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * HIT8119
+ *
  * @author chandan 1785265
  */
 @Entity
@@ -24,13 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
-    @NamedQuery(name = "Account.findByAccountno", query = "SELECT a FROM Account a WHERE a.accountno = :accountno"),
-    @NamedQuery(name = "Account.findByName", query = "SELECT a FROM Account a WHERE a.name = :name"),
-    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
-    @NamedQuery(name = "Account.findByBalance", query = "SELECT a FROM Account a WHERE a.balance = :balance"),
-    @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByPhoneno", query = "SELECT a FROM Account a WHERE a.phoneno = :phoneno")})
+    @NamedQuery(name = "Account.findByAccountno", query = "SELECT a FROM "
+        + "Account a WHERE a.accountno = :accountno"),
+    @NamedQuery(name = "Account.findByName", query = "SELECT a FROM Account a "
+        + "WHERE a.name = :name"),
+    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a"
+        + " WHERE a.email = :email"),
+    @NamedQuery(name = "Account.findByBalance", query = "SELECT a FROM "
+        + "Account a WHERE a.balance = :balance"),
+    @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM "
+        + "Account a WHERE a.password = :password"),
+    @NamedQuery(name = "Account.findByPhoneno", query = "SELECT a FROM "
+        + "Account a WHERE a.phoneno = :phoneno")})
 public class Account implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -40,7 +46,6 @@ public class Account implements Serializable {
     private String name;
     @Column(name = "EMAIL")
     private String email;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "BALANCE")
     private float balance;
     @Column(name = "PASSWORD")
@@ -63,18 +68,20 @@ public class Account implements Serializable {
         return creditTransactions;
     }
 
-    public void setCreditTransactions(Collection<Transactions> creditTransactions) {
+    public void setCreditTransactions(Collection<Transactions> 
+            creditTransactions) {
         this.creditTransactions = creditTransactions;
     }
 
-     public Collection<Transactions> getDebitTransactions() {
+    public Collection<Transactions> getDebitTransactions() {
         return debitTransactions;
     }
 
-    public void setDebitTransactions(Collection<Transactions> debitTransactions) {
+    public void setDebitTransactions(Collection<Transactions> 
+            debitTransactions) {
         this.debitTransactions = debitTransactions;
     }
-    
+
     public Account(String accountno) {
         this.accountno = accountno;
     }
@@ -152,12 +159,13 @@ public class Account implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Account)) {
             return false;
         }
         Account other = (Account) object;
-        if ((this.accountno == null && other.accountno != null) || (this.accountno != null && !this.accountno.equals(other.accountno))) {
+        if ((this.accountno == null && other.accountno != null) || 
+                (this.accountno != null && !this.accountno.equals
+                (other.accountno))) {
             return false;
         }
         return true;
@@ -167,5 +175,4 @@ public class Account implements Serializable {
     public String toString() {
         return "entities.Account[ accountno=" + accountno + " ]";
     }
-
 }

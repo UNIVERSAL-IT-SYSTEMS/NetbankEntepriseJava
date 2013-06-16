@@ -19,9 +19,11 @@
                         <td>
                             <h:inputText title="accountNo" id="accountNo"
                                          required="true" 
-                                         requiredMessage="Account No must not be blank"
+                                         requiredMessage="Account No must 
+                                         not be blank"
                                          maxlength="6" 
-                                         value="#{netbankManagedBean.accountNo}">
+                                         value="#{netbankManagedBean.
+                                                  accountNo}">
                                 <f:validateLength maximum="6"/>
                             </h:inputText>
                         </td>
@@ -36,7 +38,8 @@
                         <td>
                             <h:inputSecret title="password" id="password"
                                          required="true" 
-                                         requiredMessage="Password must not be blank"
+                                         requiredMessage="Password must not 
+                                         be blank"
                                          maxlength="8" 
                                          value="#{netbankManagedBean.password}">
                             </h:inputSecret>

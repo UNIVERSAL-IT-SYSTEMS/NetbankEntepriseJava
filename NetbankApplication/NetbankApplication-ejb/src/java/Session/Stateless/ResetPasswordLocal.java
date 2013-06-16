@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import javax.ejb.Local;
@@ -12,5 +8,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface ResetPasswordLocal {
+
     String reset(String accountNo, String secans);
 }

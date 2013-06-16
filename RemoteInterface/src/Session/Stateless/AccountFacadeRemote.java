@@ -1,4 +1,3 @@
-
 package Session.Stateless;
 
 import entities.Account;
@@ -7,6 +6,7 @@ import javax.ejb.Remote;
 
 /**
  * HIT8119
+ *
  * @author chandan 1785265
  */
 @Remote
@@ -25,5 +25,4 @@ public interface AccountFacadeRemote {
     List<Account> findRange(int[] range);
 
     int count();
-    
 }

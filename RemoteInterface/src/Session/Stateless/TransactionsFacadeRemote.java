@@ -1,4 +1,3 @@
-
 package Session.Stateless;
 
 import entities.Transactions;
@@ -7,6 +6,7 @@ import javax.ejb.Remote;
 
 /**
  * HIT8119
+ *
  * @author chandan 1785265
  */
 @Remote
@@ -25,5 +25,4 @@ public interface TransactionsFacadeRemote {
     List<Transactions> findRange(int[] range);
 
     int count();
-
 }

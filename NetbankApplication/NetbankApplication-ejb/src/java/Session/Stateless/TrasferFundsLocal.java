@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import javax.ejb.Local;
@@ -12,7 +8,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface TrasferFundsLocal {
-    
-    String transferFunds(String accountFromNo, String accountToNo, 
+
+    String transferFunds(String accountFromNo, String accountToNo,
             float amount);
 }

@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import entities.Account;
 import entities.Transactions;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,27 +13,29 @@ import javax.ejb.Stateless;
  * @author chandan
  */
 @Stateless
-public class AccountStatement implements AccountStatementRemote, AccountStatementLocal {
+public class AccountStatement implements AccountStatementRemote,
+        AccountStatementLocal {
+
     @EJB
     private AccountFacadeLocal accountFacade;
     private Collection<Transactions> debitCollection;
     private Collection<Transactions> creditCollection;
 
     @Override
-    public List<Transactions> viewTransactions(String accountNo){
+    public List<Transactions> viewTransactions(String accountNo) {
         Account account = accountFacade.find(accountNo);
-        if(account != null){
+        if (account != null) {
             debitCollection = account.getDebitTransactions();
             System.out.println("##### Debit count");
             System.out.println(debitCollection.size());
-            creditCollection = account.getCreditTransactions();  
+            creditCollection = account.getCreditTransactions();
             System.out.println("##### Credit count");
             System.out.println(creditCollection.size());
             List<Transactions> result = new ArrayList<Transactions>();
-            if(debitCollection != null){
+            if (debitCollection != null) {
                 result.addAll(debitCollection);
             }
-            if(creditCollection!= null){
+            if (creditCollection != null) {
                 result.addAll(creditCollection);
             }
             System.out.println("##### Total count");
@@ -46,5 +43,5 @@ public class AccountStatement implements AccountStatementRemote, AccountStatemen
             return result;
         }
         return null;
-    } 
+    }
 }

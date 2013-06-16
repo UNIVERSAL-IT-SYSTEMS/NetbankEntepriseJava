@@ -2,10 +2,6 @@
 package Session.Stateless;
 
 import entities.Account;
-import entities.Transactions;
-import java.math.BigDecimal;
-import java.util.Date;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +11,8 @@ import javax.persistence.PersistenceContext;
  * @author chandan 1785265
  */
 @Stateless
-public class AccountFacade extends AbstractFacade<Account> implements AccountFacadeLocal, AccountFacadeRemote {
+public class AccountFacade extends AbstractFacade<Account> implements 
+        AccountFacadeLocal, AccountFacadeRemote {
  
     @PersistenceContext(unitName = "NetbankApplication-ejbPU")
     private EntityManager em;

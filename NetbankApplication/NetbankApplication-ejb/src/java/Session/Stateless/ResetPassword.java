@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Session.Stateless;
 
 import entities.Account;
@@ -22,16 +18,16 @@ import javax.mail.internet.MimeMessage;
  */
 @Stateless
 public class ResetPassword implements ResetPasswordRemote, ResetPasswordLocal {
+
     @EJB
     private AccountFacadeLocal accountFacade;
-    
     @Resource(name = "mail/myMailSession")
     private Session mailSession;
-    
-    public String reset(String accountNo, String secans){
-        try{
+
+    public String reset(String accountNo, String secans) {
+        try {
             Account account = accountFacade.find(accountNo);
-            if(secans.equals(account.getSecans())){
+            if (secans.equals(account.getSecans())) {
                 UUID uuid = UUID.randomUUID();
                 String newPaasword = uuid.toString().substring(0, 6);
                 account.setPassword(newPaasword);
@@ -44,14 +40,14 @@ public class ResetPassword implements ResetPasswordRemote, ResetPasswordLocal {
                 // recipient. The recipient's address must be
                 // an object of the InternetAddress class.
                 message.setRecipients(Message.RecipientType.TO,
-                               InternetAddress.parse(account.getEmail(), false));
+                        InternetAddress.parse(account.getEmail(), false));
 
                 // Set the message's subject
                 message.setSubject("Netbank password reset");
 
                 // Insert the message's body
                 message.setText("Your password has been changed successfully.\n"
-                        + " Your new password is: "+newPaasword);
+                        + " Your new password is: " + newPaasword);
                 Date timeStamp = new Date();
                 message.setSentDate(timeStamp);
 
@@ -59,13 +55,13 @@ public class ResetPassword implements ResetPasswordRemote, ResetPasswordLocal {
                 // class to send the message
                 Transport.send(message);
                 return "Request sent successfully. Check your email.";
-            }else{
+            } else {
                 System.out.println("Security answer is incorrect");
                 return "Security answer is incorrect";
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("userID doesnot exist");
-            return"Account null";
+            return "Account null";
         }
     }
 }
