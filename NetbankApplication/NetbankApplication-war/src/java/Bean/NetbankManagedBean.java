@@ -184,5 +184,14 @@ public class NetbankManagedBean implements Serializable {
         Account account = accountFacade.find(accountNo);
         setSecQues(account.getSecques());
     }
+    
+    public String logout(){
+        FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.
+                    getExternalContext().getSession(true);
+        session.invalidate();
+        accountNo = null;
+        return "success";
+    }
 }
 

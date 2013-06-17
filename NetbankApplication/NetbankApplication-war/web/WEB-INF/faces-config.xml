@@ -16,4 +16,12 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
             <to-view-id>/menu.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <description>Logout</description>
+        <from-view-id>/menu.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
