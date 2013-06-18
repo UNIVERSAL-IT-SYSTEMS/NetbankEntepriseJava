@@ -64,8 +64,8 @@ public class ResetPassword implements ResetPasswordLocal {
                 return "Security answer is incorrect";
             }
         }catch(Exception e){
-            System.out.println("userID doesnot exist");
-            return"Account null";
+            System.out.println("Email failed");
+            return"Check your mail";
         }
     }
 }
